@@ -9,7 +9,7 @@ __version__ = "2.1.1"
 __author__ = "Claudio Sanches @ Automattic"
 __license__ = "MIT"
 
-from requests import request
+import treq
 from json import dumps as jsonencode
 from time import time
 from woocommerce.oauth import OAuth
@@ -91,7 +91,7 @@ class API(object):
             data = jsonencode(data, ensure_ascii=False).encode('utf-8')
             headers["content-type"] = "application/json;charset=utf-8"
 
-        return request(
+        return treq.request(
             method=method,
             url=url,
             verify=self.verify_ssl,
